@@ -1,0 +1,59 @@
+name: Generate APK
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  generate-debug-apk:
+    name: Generate Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Setup Java 11 Environment
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Update Permission for gradle
+        run: chmod +x gradlew
+
+      - name: Build APK
+        run: ./gradlew clean assembleDebug
+
+      - name: Upload to release asset
+        uses: skx/github-action-publish-binaries@master
+        id: attach_to_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+        with:
+          args: "app/build/outputs/apk/debug/*.apk"
+
+      - name: Print Output data
+        run: /
+          echo ${{ steps.attach_to_release.outputs }}
+
+#      - name: Test
+#        run: |
+#          echo $RELEASE_VERSION
+#          echo ${{ env.RELEASE_VERSION }}
+
+#      - name: Send a message to Microsoft Teams
+#        uses: aliencube/microsoft-teams-actions@v0.8.0
+#        with:
+#          webhook_uri: https://sworksios.webhook.office.com/webhookb2/d5b2cbb2-d71d-4caa-9136-e5cdb14c9bf4@2c70ab87-c715-45ce-91f9-4d14359b36b1/IncomingWebhook/d46be0c6ae414818844c589e79ff0875/1b0b3ead-99b7-420e-8d37-b514e885f81d
+#          title: Test
+#          summary: Test
+#          text: Test
+#          actions: '[{ "@type": "OpenUri", "name": "lorem ipsum", "targets": [{ "os": "default", "uri": "https://localhost" }] }]'
+
+
+
+
+#https://teams:
+#  microsoft:
+#    com/l/channel/19%3a26cef7b6a87540efae7168bac0c068a9%40thread:
+#      tacv2/Eagle%2520Taxi?groupId=d5b2cbb2-d71d-4caa-9136-e5cdb14c9bf4&tenantId=2c70ab87-c715-45ce-91f9-4d14359b36b1:
