@@ -171,10 +171,6 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-    testlock(){
-        return "Hello"
-    }
-
-    OUTPUT="Hello"
-    echo "$OUTPUT"
+    ${OUTPUTS_DOWNLOADURL}="HELLO"
+    echo "${RELEASE_ID}"
 done
