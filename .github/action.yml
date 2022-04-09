@@ -20,4 +20,3 @@ runs:
   args:
     - ${{ inputs.args }}
     - ${{ inputs.releaseId }}
-    - ${{ outputs.downloadUrl }}

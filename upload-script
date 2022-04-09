@@ -171,7 +171,9 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-    downloadUrl="HELLO"
+    latesttag=$(git describe --tags)
+    echo "checking out ${latesttag}"
+    downloadUrl="https://github.com/${GITHUB_REPOSITORY}/releases/download/${latesttag}/${FILENAME}"
     echo "$downloadUrl"
     echo ::set-output name=some_output::"$downloadUrl"
 
