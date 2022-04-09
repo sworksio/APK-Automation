@@ -25,13 +25,12 @@ jobs:
         run: ./gradlew clean assembleDebug
 
       - name: Upload to release asset
-        uses: sworksio/APK-Automation@main
+        run: echo '::set-output name=DEMO::$(sworksio/APK-Automation@main)'
         id: attach_to_release
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
         with:
           args: "app/build/outputs/apk/debug/*.apk"
-        run: echo '::set-output name=DEMO::HELLO'
 
       - name: Print Output data
         run: /
