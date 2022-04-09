@@ -16,5 +16,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY upload-script /usr/bin/upload-script
-
-ENTRYPOINT ["/upload-script"]
+#COPY upload-script /upload-script
+RUN chmod u+x upload-script
+ENTRYPOINT ["upload-script"]
