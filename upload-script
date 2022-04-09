@@ -171,6 +171,7 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-    core.setOutput('download_url', "uploadUrl")
-    echo "$response"
+
+    OUTPUT="Hello"
+    echo "$OUTPUT"
 done
