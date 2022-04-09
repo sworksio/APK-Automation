@@ -173,4 +173,5 @@ for file in $INPUT_ARGS; do
 
     downloadUrl="HELLO"
     echo "$downloadUrl"
+
 done
