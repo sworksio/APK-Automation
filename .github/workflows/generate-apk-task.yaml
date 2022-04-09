@@ -43,9 +43,9 @@ jobs:
         uses: aliencube/microsoft-teams-actions@v0.8.0
         with:
           webhook_uri: https://sworksios.webhook.office.com/webhookb2/d5b2cbb2-d71d-4caa-9136-e5cdb14c9bf4@2c70ab87-c715-45ce-91f9-4d14359b36b1/IncomingWebhook/d46be0c6ae414818844c589e79ff0875/1b0b3ead-99b7-420e-8d37-b514e885f81d
-          title: title
+          title: Automation APK tets
           summary: summary
-          text: text
+          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
 
 
 
