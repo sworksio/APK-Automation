@@ -11,6 +11,9 @@ inputs:
   releaseId:
     description: 'The release Id of the release to be targeted.'
     required: false
+outputs:
+  some_output:
+    description: some output
 runs:
   using: 'docker'
   image: 'Dockerfile'

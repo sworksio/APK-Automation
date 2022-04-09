@@ -173,5 +173,6 @@ for file in $INPUT_ARGS; do
 
     downloadUrl="HELLO"
     echo "$downloadUrl"
+    echo ::set-output name=some_output::"$downloadUrl"
 
 done

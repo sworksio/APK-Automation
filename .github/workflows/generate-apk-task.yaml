@@ -34,7 +34,7 @@ jobs:
 
       - name: Print Output data
         run: /
-          echo ${{ steps.attach_to_release.outputs.DEMO }}
+          echo ${{ steps.attach_to_release.outputs.some_output }}
 
 #      - name: Test
 #        run: |
