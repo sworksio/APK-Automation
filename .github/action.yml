@@ -1,4 +1,4 @@
-name: 'parth-github-action-publish-binaries'
+name: 'APK-Automation'
 description: 'Publish binaries when new releases are made.'
 author: 'Steve Kemp'
 branding:
