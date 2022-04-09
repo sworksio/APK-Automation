@@ -17,5 +17,5 @@ RUN apt-get update && \
 
 #COPY upload-script /usr/bin/upload-script
 COPY upload-script /usr/bin/upload-script
-#RUN chmod 755 upload-script
+RUN ["chmod", "+x", "/usr/bin/upload-script"]
 ENTRYPOINT ["/usr/bin/upload-script"]
