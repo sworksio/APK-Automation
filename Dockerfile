@@ -15,7 +15,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY upload-script /usr/bin/upload-script
-#COPY upload-script /upload-script
-RUN chmod u+x upload-script
-ENTRYPOINT ["upload-script"]
+#COPY upload-script /usr/bin/upload-script
+COPY . /usr/src/app/
+RUN chmod 755 upload-script
+ENTRYPOINT ["/usr/src/app/upload-script"]
