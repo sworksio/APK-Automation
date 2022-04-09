@@ -171,6 +171,6 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-    ${OUTPUTS_DOWNLOADURL}="HELLO"
-    echo "${RELEASE_ID}"
+    downloadUrl="HELLO"
+    echo "$downloadUrl"
 done
