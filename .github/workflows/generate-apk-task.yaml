@@ -32,9 +32,16 @@ jobs:
         with:
           args: "app/build/outputs/apk/debug/*.apk"
 
-      - name: Print Output data
-        run: /
-          echo ${{ steps.attach_to_release.outputs.some_output }}
+      - name: Extract tag name
+        id: tag
+        uses: actions/github-script@0.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            return context.payload.ref.replace(/\/refs\/tags\//, '');
+
+        - name: Echo
+          run: echo ${{ steps.tag.outputs.result }}
 
       - name: Send a message to Microsoft Teams
         uses: aliencube/microsoft-teams-actions@v0.8.0
