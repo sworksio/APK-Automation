@@ -34,7 +34,7 @@ jobs:
 
       - name: Print Output data
         run: /
-          echo ${{ steps.attach_to_release.response }}
+          echo ${{ steps.attach_to_release.outputs.download_url }}
 
 #      - name: Test
 #        run: |
