@@ -17,4 +17,4 @@ RUN apt-get update && \
 
 COPY upload-script /usr/bin/upload-script
 
-ENTRYPOINT ["upload-script"]
+ENTRYPOINT ["/upload-script"]
