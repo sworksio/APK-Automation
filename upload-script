@@ -171,7 +171,7 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-    latesttag=$(git describe --tags)
+    latesttag=$(git describe --tags $(git rev-list --tags --max-count=1))
     echo "checking out ${latesttag}"
     downloadUrl="https://github.com/${GITHUB_REPOSITORY}/releases/download/${latesttag}/${FILENAME}"
     echo "$downloadUrl"
