@@ -171,11 +171,10 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-    latesttag=$(GITHUB_REF | cut -d / -f 3)
-    echo "checking out ${latesttag}"
+    replaceBrackets="."
+    fileName="${FILENAME/(/"$secondString"/)/"$secondString"}"
     downloadUrl="https://github.com/${GITHUB_REPOSITORY}/releases/download/"
-    echo "$downloadUrl"
     echo ::set-output name=url::"$downloadUrl"
-    echo ::set-output name=file_name::"${FILENAME}"
+    echo ::set-output name=file_name::"${fileName}"
 
 done
