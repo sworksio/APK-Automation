@@ -22,7 +22,6 @@ jobs:
 
       - name: Print environment variables
         run: |
-#          echo "${{ refs/heads/main }}"
           echo "${{ github.ref }}"
           echo "CI_REPOSITORY_SLUG=$CI_REPOSITORY_SLUG"
           echo "CI_REPOSITORY_OWNER=$CI_REPOSITORY_OWNER"
