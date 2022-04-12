@@ -15,77 +15,111 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-      #        with:
-      #          ref: 'main'
 
-      - uses: FranzDiebold/github-env-vars-action@v2
+      - name: Setup Java 11 Environment
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
 
-      - name: Print environment variables
-        run: |
-          echo "github:  ${{ github.ref }}"
-          echo "CI_REPOSITORY_SLUG=$CI_REPOSITORY_SLUG"
-          echo "CI_REPOSITORY_OWNER=$CI_REPOSITORY_OWNER"
-          echo "CI_REPOSITORY_OWNER_SLUG=$CI_REPOSITORY_OWNER_SLUG"
-          echo "CI_REPOSITORY_NAME=$CI_REPOSITORY_NAME"
-          echo "CI_REPOSITORY_NAME_SLUG=$CI_REPOSITORY_NAME_SLUG"
-          echo "CI_REPOSITORY=$CI_REPOSITORY"
-          echo "CI_REF_SLUG=$CI_REF_SLUG"
-          echo "CI_ACTION_REF_NAME=$CI_ACTION_REF_NAME"
-          echo "CI_ACTION_REF_NAME_SLUG=$CI_ACTION_REF_NAME_SLUG"
-          echo "CI_REF_NAME=$CI_REF_NAME"
-          echo "CI_REF_NAME_SLUG=$CI_REF_NAME_SLUG"
-          echo "CI_REF=$CI_REF"
-          echo "CI_HEAD_REF_SLUG=$CI_HEAD_REF_SLUG"
-          echo "CI_HEAD_REF=$CI_HEAD_REF"
-          echo "CI_BASE_REF_SLUG=$CI_BASE_REF_SLUG"
-          echo "CI_BASE_REF=$CI_BASE_REF"
-          echo "CI_SHA_SHORT=$CI_SHA_SHORT"
-          echo "CI_SHA=$CI_SHA"
-          echo "CI_ACTOR=$CI_ACTOR"
-          echo "CI_EVENT_NAME=$CI_EVENT_NAME"
-          echo "CI_RUN_ID=$CI_RUN_ID"
-          echo "CI_RUN_NUMBER=$CI_RUN_NUMBER"
-          echo "CI_WORKFLOW=$CI_WORKFLOW"
-          echo "CI_ACTION=$CI_ACTION"
+      - name: Update Permission for gradle
+        run: chmod +x gradlew
 
-#      - name: Setup Java 11 Environment
-#        uses: actions/setup-java@v1
-#        with:
-#          java-version: 11
+      - name: Build APK
+        run: ./gradlew clean assembleQa
+
+      - name: Upload to release asset
+        uses: sworksio/APK-Automation@main
+        id: attach_to_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+        with:
+          args: "app/build/outputs/apk/debug/*.apk"
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Print Tag
+        run: echo ${{ steps.get_version.outputs.VERSION }}
+
+      - name: Send a message to Microsoft Teams
+        uses: aliencube/microsoft-teams-actions@v0.8.0
+        with:
+          webhook_uri: https://sworksios.webhook.office.com/webhookb2/d5b2cbb2-d71d-4caa-9136-e5cdb14c9bf4@2c70ab87-c715-45ce-91f9-4d14359b36b1/IncomingWebhook/d46be0c6ae414818844c589e79ff0875/1b0b3ead-99b7-420e-8d37-b514e885f81d
+          title: Automation APK tets
+          summary: summary
+          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
+
+  generate-release-apk:
+    name: Generate Debug APK
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.ref, 'QA') == false }}
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Setup Java 11 Environment
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Update Permission for gradle
+        run: chmod +x gradlew
+
+      - name: Build APK
+        run: ./gradlew clean assembleRelease
+
+      - name: Upload to release asset
+        uses: sworksio/APK-Automation@main
+        id: attach_to_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+        with:
+          args: "app/build/outputs/apk/debug/*.apk"
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Print Tag
+        run: echo ${{ steps.get_version.outputs.VERSION }}
+
+      - name: Send a message to Microsoft Teams
+        uses: aliencube/microsoft-teams-actions@v0.8.0
+        with:
+          webhook_uri: https://sworksios.webhook.office.com/webhookb2/d5b2cbb2-d71d-4caa-9136-e5cdb14c9bf4@2c70ab87-c715-45ce-91f9-4d14359b36b1/IncomingWebhook/d46be0c6ae414818844c589e79ff0875/1b0b3ead-99b7-420e-8d37-b514e885f81d
+          title: Automation APK tets
+          summary: summary
+          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
+
+
+#  - uses: FranzDiebold/github-env-vars-action@v2
 #
-#      - name: Update Permission for gradle
-#        run: chmod +x gradlew
-#
-#      - name: Build APK
-#        run: ./gradlew clean assembleDebug
-#
-#      - name: Upload to release asset
-#        uses: sworksio/APK-Automation@main
-#        id: attach_to_release
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
-#        with:
-#          args: "app/build/outputs/apk/debug/*.apk"
-#
-#      - name: Get the version
-#        id: get_version
-#        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-#
-#      - name: Print Tag
-#        run: echo ${{ steps.get_version.outputs.VERSION }}
-#
-#      - name: Send a message to Microsoft Teams
-#        uses: aliencube/microsoft-teams-actions@v0.8.0
-#        with:
-#          webhook_uri: https://sworksios.webhook.office.com/webhookb2/d5b2cbb2-d71d-4caa-9136-e5cdb14c9bf4@2c70ab87-c715-45ce-91f9-4d14359b36b1/IncomingWebhook/d46be0c6ae414818844c589e79ff0875/1b0b3ead-99b7-420e-8d37-b514e885f81d
-#          title: Automation APK tets
-#          summary: summary
-#          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
-
-
-
-
-#https://teams:
-#  microsoft:
-#    com/l/channel/19%3a26cef7b6a87540efae7168bac0c068a9%40thread:
-#      tacv2/Eagle%2520Taxi?groupId=d5b2cbb2-d71d-4caa-9136-e5cdb14c9bf4&tenantId=2c70ab87-c715-45ce-91f9-4d14359b36b1:
+#  - name: Print environment variables
+#    run: |
+#      echo "github:  ${{ github.ref }}"
+#      echo "CI_REPOSITORY_SLUG=$CI_REPOSITORY_SLUG"
+#      echo "CI_REPOSITORY_OWNER=$CI_REPOSITORY_OWNER"
+#      echo "CI_REPOSITORY_OWNER_SLUG=$CI_REPOSITORY_OWNER_SLUG"
+#      echo "CI_REPOSITORY_NAME=$CI_REPOSITORY_NAME"
+#      echo "CI_REPOSITORY_NAME_SLUG=$CI_REPOSITORY_NAME_SLUG"
+#      echo "CI_REPOSITORY=$CI_REPOSITORY"
+#      echo "CI_REF_SLUG=$CI_REF_SLUG"
+#      echo "CI_ACTION_REF_NAME=$CI_ACTION_REF_NAME"
+#      echo "CI_ACTION_REF_NAME_SLUG=$CI_ACTION_REF_NAME_SLUG"
+#      echo "CI_REF_NAME=$CI_REF_NAME"
+#      echo "CI_REF_NAME_SLUG=$CI_REF_NAME_SLUG"
+#      echo "CI_REF=$CI_REF"
+#      echo "CI_HEAD_REF_SLUG=$CI_HEAD_REF_SLUG"
+#      echo "CI_HEAD_REF=$CI_HEAD_REF"
+#      echo "CI_BASE_REF_SLUG=$CI_BASE_REF_SLUG"
+#      echo "CI_BASE_REF=$CI_BASE_REF"
+#      echo "CI_SHA_SHORT=$CI_SHA_SHORT"
+#      echo "CI_SHA=$CI_SHA"
+#      echo "CI_ACTOR=$CI_ACTOR"
+#      echo "CI_EVENT_NAME=$CI_EVENT_NAME"
+#      echo "CI_RUN_ID=$CI_RUN_ID"
+#      echo "CI_RUN_NUMBER=$CI_RUN_NUMBER"
+#      echo "CI_WORKFLOW=$CI_WORKFLOW"
+#      echo "CI_ACTION=$CI_ACTION"
