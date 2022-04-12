@@ -10,7 +10,7 @@ jobs:
   generate-debug-apk:
     name: Generate Debug APK
     runs-on: ubuntu-latest
-#    if: ${{ contains(${refs/heads/main}, 'QA') }}
+    if: ${{ contains(${{ github.ref }}, 'QA') }}
 
     steps:
       - name: Checkout the code
