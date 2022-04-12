@@ -2,13 +2,15 @@ name: Generate APK
 
 on:
   release:
+    #    branches:
+    #      - main
     types: [published]
 
 jobs:
   generate-debug-apk:
     name: Generate Debug APK
     runs-on: ubuntu-latest
-    if: "QA" in 'refs/heads/main'
+    if: ${{ contains(refs/heads/main, 'QA') }}
 
     steps:
       - name: Checkout the code
