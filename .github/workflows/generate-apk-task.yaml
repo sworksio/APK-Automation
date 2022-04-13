@@ -76,7 +76,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
         with:
-          args: "app/build/outputs/bundle/release/*.aab"
+          args: "app/build/outputs/app/release/*.apk"
+#          args: "app/build/outputs/bundle/release/*.aab"
 
       - name: Get the version
         id: get_version
