@@ -28,9 +28,9 @@ android {
         }
         release {
             storeFile file("releaseKey.jks")
-            storePassword "NLDriver902rK93KJx"
-            keyAlias "New Liberty Driver Release"
-            keyPassword "NLDriver902rK93KJx"
+            storePassword "testAPK123"
+            keyAlias "testAPK123"
+            keyPassword "testAPK123"
         }
     }
 
