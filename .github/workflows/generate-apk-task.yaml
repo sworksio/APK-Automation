@@ -51,7 +51,7 @@ jobs:
           text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
 
   generate-release-apk:
-    name: Generate Debug APK
+    name: Generate Release APK
     runs-on: ubuntu-latest
     if: ${{ contains(github.ref, 'QA') == false }}
 
