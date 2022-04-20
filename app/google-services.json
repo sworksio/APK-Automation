@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "906779639180",
+    "project_id": "ac-luxury",
+    "storage_bucket": "ac-luxury.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906779639180:android:0e022ac09c1efe219d2aa9",
+        "android_client_info": {
+          "package_name": "com.gallowayluxurycarservice.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906779639180-77ntnt8kj17js929clvsh4e1u25eih2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp_FkuntPsDeDrF6V9VvwTBm1buaB1rGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906779639180-77ntnt8kj17js929clvsh4e1u25eih2t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906779639180-53dkj6qfuqndco77h6gtc9aqvf6h95im.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gallowayluxurycarservice.driver"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906779639180:android:6b5490394e635a7b9d2aa9",
+        "android_client_info": {
+          "package_name": "com.gallowayluxurycarservice.rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906779639180-77ntnt8kj17js929clvsh4e1u25eih2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp_FkuntPsDeDrF6V9VvwTBm1buaB1rGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906779639180-77ntnt8kj17js929clvsh4e1u25eih2t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906779639180-53dkj6qfuqndco77h6gtc9aqvf6h95im.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gallowayluxurycarservice.driver"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
