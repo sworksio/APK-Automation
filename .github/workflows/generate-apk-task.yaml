@@ -33,36 +33,21 @@ jobs:
         with:
           args: "app/build/outputs/apk/qa/*.apk"
 
-#      - name: Send mail
-#        uses: dawidd6/action-send-mail@v3
-#        with:
-#          server_address: smtp.gmail.com
-#          server_port: 465
-#          username: "parth.sworks@gmail.com"
-#          password: "gwtgvabbiwzxndaw"
-#          subject: ${{ secrets.APP_NAME }}
-#          to: Parth - sWorks PM & Team <e3d4a0bc.sworks.io@in.teams.ms>
-#          from: Parth <parth.sworks@gmail.com>
-#          body: Build job of ${{ secrets.APP_NAME }} completed successfully!
-#          ignore_cert: true
-#          convert_markdown: true
-#          attachments: app/build/outputs/apk/qa/*.apk
-#          priority: low
-#
       - name: upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
-          groups: testers
+          groups: Testers
+          releaseNotesFile: "app/releaseNote.txt"
           file: "app/build/outputs/apk/qa/${{ steps.attach_to_release.outputs.file_name }}"
 #
 #      - name: Get the version
 #        id: get_version
 #        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
-      #      - name: Print Tag
-      #        run: echo ${{ steps.get_version.outputs.VERSION }}
+#      - name: Print Tag
+#        run: echo ${{ steps.get_version.outputs.VERSION }}
 
 #      - name: Send a message to Microsoft Teams
 #        uses: aliencube/microsoft-teams-actions@v0.8.0
@@ -91,8 +76,8 @@ jobs:
       - name: Update Permission for gradle
         run: chmod +x gradlew
 
-      #      - name: Build APK
-      #        run: ./gradlew clean assembleRelease
+#      - name: Build APK
+#        run: ./gradlew clean assembleRelease
       - name: Build Bundle
         run: ./gradlew clean :app:bundleRelease
 
@@ -109,8 +94,8 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
-      #      - name: Print Tag
-      #        run: echo ${{ steps.get_version.outputs.VERSION }}
+#      - name: Print Tag
+#        run: echo ${{ steps.get_version.outputs.VERSION }}
 
       - name: Send a message to Microsoft Teams
         uses: aliencube/microsoft-teams-actions@v0.8.0
