@@ -25,28 +25,44 @@ jobs:
       - name: Build APK
         run: ./gradlew clean assembleQa
 
-      - name: Upload to release asset
-        uses: sworksio/APK-Automation@main
-        id: attach_to_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
-        with:
-          args: "app/build/outputs/apk/qa/*.apk"
-
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+#      - name: Upload to release asset
+#        uses: sworksio/APK-Automation@main
+#        id: attach_to_release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+#        with:
+#          args: "app/build/outputs/apk/qa/*.apk"
+#
+#      - name: Get the version
+#        id: get_version
+#        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
       #      - name: Print Tag
       #        run: echo ${{ steps.get_version.outputs.VERSION }}
 
-      - name: Send a message to Microsoft Teams
-        uses: aliencube/microsoft-teams-actions@v0.8.0
+#      - name: Send a message to Microsoft Teams
+#        uses: aliencube/microsoft-teams-actions@v0.8.0
+#        with:
+#          webhook_uri: ${{ secrets.TEAM_CHANNEL_WEBHOOK_URL }}
+#          title: QA Build
+#          summary: summary
+#          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
+
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
         with:
-          webhook_uri: ${{ secrets.TEAM_CHANNEL_WEBHOOK_URL }}
-          title: QA Build
-          summary: summary
-          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: "parth.sworks@gmail.com"
+          password: "Sworks@2798"
+          subject: ${{ secrets.APP_NAME }}
+          to: Parth - sWorks PM & Team <e3d4a0bc.sworks.io@in.teams.ms>
+          from: Parth <parth.sworks@gmail.com>
+          body: Build job of ${{ secrets.APP_NAME }} completed successfully!
+          ignore_cert: true
+          convert_markdown: true
+          attachments: app/build/outputs/apk/qa/*.apk
+          priority: low
 
   generate-release-Bundle:
     #    name: Generate Release APK
