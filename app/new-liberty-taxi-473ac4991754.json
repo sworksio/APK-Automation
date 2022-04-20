@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "new-liberty-taxi",
+  "private_key_id": "473ac499175412b10a4356cdda720bc085aa3c01",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC/OKygRc8wGitB\n8VBVAbFYRg/jy5Aml0R6dVe8in0r9Z5BgKjg/SKWuZiogT5EZCYOb3w1WzfHY11A\nvI5+8lX4LljHtVUu4DG6zPl7Muj2uhxwSovEqZsNZnlM0UqzEdHDWDdMOVSgLIAk\n2jyBYig650qiB+CX4aw/XnV4V/z0XJnbaBYfot8O4cvtP31tpgNRnl0ggFtC1fEH\ngskV2BqtwzXuVM/w88cGxmTxnqylCIbAw4qLysa/YoHJgqXB4mixOUz0EmVYKDCh\n3PZQUe4aqzMQsSb5Xc65+etymA2X3xleN3uDolJRnKCaBHENswSSEIojPj/F2N3f\nJF0Ze4a3AgMBAAECggEAHBf7ALcQ6AvINDF8cGjFwebVOc3z+T97H5Sy1a/xEO7O\nl+gLp7Z5CPTukT8fw1OFZdSKRpqGuOQH1NV/B/aZm9NPVtP01mS42a14r9l8cZdJ\nS1Qgcb3LWm4mPxt2opVpII6K3UeE/91Z3FA12Hpv16uYgvKuVBIjSNIbZxliQBJD\nbFukqtp83MIEtaBTCR01wo78j4Ya36bEZO537dwNDVt9UZFMw9xL6hccOmeAgpWN\nZuX/H6kxpenLNUB9T664EJUBAnK+HOl5uBZSDovPq9XMQQu/fK1C2bQ/ixkTYfiI\nEUuhrIrGzDpHNvvNeFT5fJIFpFLnsPdABvJg1ipGkQKBgQD1Da4+llqctt52vUFu\nQ2nMGSlcAJVvPtjzx0yM8nT2v1Jfw/7KA3Xw1eoSDY5wDKAWQ4DPi3CVQeBEXa+N\niwebQRtflyvaLhZK1FJdQVnQQTBDHLQZjMeIc60IBZ3yY7N0qtvfYEkyjqW5uH35\naJgMA4YjIpBN6crkb6E4kvhcsQKBgQDHw2UUXnw0sqCPaSe3yTksvOJNq6UlKLqO\n/9+JOHwznuA4oawDKIcpYwtZWe8cVC6jVvNP9HjydhDTpAM0EtqmUcPiqaBFRjy9\nhVP7nAVI+I/mPUpyziF8tsOK+O6AUNIwGs4wyRWHbVLG/sxC6vq5jlPkUJMJnoFr\nIf+NbRrT5wKBgQDIwHljipcW1XTwP2Dv7MgqTN6mIVBKf2kKZNYgjawmTFw2WgFM\nC4O+VfBY88QhpSYstwY6gJgtnncUas+bnC8SEEdViymApsraaJBFF3l1c0IPaN9e\nIwd/kIxLCxb28JieVi6kE2RDx7qaqDqDbR1KkkR8Wh9vxLzTYWPpTfWrMQKBgQCE\nyZHrVFNkBElOiyvns07aOkSENND2PnikjdndsTp+ZeHOQ0nAX7RZAomMv4d+YUcP\nNMFQKMYtBeZxiNjISLAnVrrLdM4gvmup33LQEgpBU1j0R1GxtuvzptmdC5Qen5rY\ndzkQnNo+x6D6vmyxHtnDdqS1ZAoZns+Qk2z4aconiQKBgQCFEDYz/h6HJXZmfJPH\nu2YRCkYQRgHoY4vvXAZ26ALvXkDF7+jSbcfqHSY6VCCkGIMpAFbkmGNkA0TRlrtf\nK38eUP1mzN1JXYNcw1Qp8djQ+PSLyPRBdI2ADdMJATN4gV2S2nb8qbuMh2wzqO33\nACjyI/K7r+IKlUGkIo3TeHZr8Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-m7wa6@new-liberty-taxi.iam.gserviceaccount.com",
+  "client_id": "110147815477844916732",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-m7wa6%40new-liberty-taxi.iam.gserviceaccount.com"
+}
