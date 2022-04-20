@@ -31,7 +31,7 @@ jobs:
           server_address: smtp.gmail.com
           server_port: 465
           username: "parth.sworks@gmail.com"
-          password: "Sworks@2798"
+          password: "gwtgvabbiwzxndaw"
           subject: ${{ secrets.APP_NAME }}
           to: Parth - sWorks PM & Team <e3d4a0bc.sworks.io@in.teams.ms>
           from: Parth <parth.sworks@gmail.com>
