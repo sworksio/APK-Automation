@@ -25,6 +25,30 @@ jobs:
       - name: Build APK
         run: ./gradlew clean assembleQa
 
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: "parth.sworks@gmail.com"
+          password: "Sworks@2798"
+          subject: ${{ secrets.APP_NAME }}
+          to: Parth - sWorks PM & Team <e3d4a0bc.sworks.io@in.teams.ms>
+          from: Parth <parth.sworks@gmail.com>
+          body: Build job of ${{ secrets.APP_NAME }} completed successfully!
+          ignore_cert: true
+          convert_markdown: true
+          attachments: app/build/outputs/apk/qa/*.apk
+          priority: low
+
+#      - name: upload artifact to Firebase App Distribution
+#        uses: wzieba/Firebase-Distribution-Github-Action@v1
+#        with:
+#          appId: ${{secrets.FIREBASE_APP_ID}}
+#          token: ${{secrets.FIREBASE_TOKEN}}
+#          groups: testers
+#          file: app/build/outputs/apk/qa/*.apk
+
 #      - name: Upload to release asset
 #        uses: sworksio/APK-Automation@main
 #        id: attach_to_release
@@ -48,21 +72,6 @@ jobs:
 #          summary: summary
 #          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
 
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: "parth.sworks@gmail.com"
-          password: "Sworks@2798"
-          subject: ${{ secrets.APP_NAME }}
-          to: Parth - sWorks PM & Team <e3d4a0bc.sworks.io@in.teams.ms>
-          from: Parth <parth.sworks@gmail.com>
-          body: Build job of ${{ secrets.APP_NAME }} completed successfully!
-          ignore_cert: true
-          convert_markdown: true
-          attachments: app/build/outputs/apk/qa/*.apk
-          priority: low
 
   generate-release-Bundle:
     #    name: Generate Release APK
