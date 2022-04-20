@@ -55,7 +55,7 @@ jobs:
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: testers
-          file: "app/build/outputs/apk/qa/${{ steps.attach_to_release.outputs.file_name }}.apk"
+          file: "app/build/outputs/apk/qa/${{ steps.attach_to_release.outputs.file_name }}"
 #
 #      - name: Get the version
 #        id: get_version
