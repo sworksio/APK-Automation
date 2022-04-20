@@ -176,6 +176,6 @@ for file in $INPUT_ARGS; do
     fileName="${tempFileName/)/"$replaceBrackets"}"
     downloadUrl="https://github.com/${GITHUB_REPOSITORY}/releases/download/"
     echo ::set-output name=url::"$downloadUrl"
-    echo ::set-output name=file_name::"${fileName}"
+    echo ::set-output name=file_name::"${FILENAME}"
 
 done
