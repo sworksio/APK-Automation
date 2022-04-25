@@ -171,10 +171,11 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-
-    echo "FileName:  ${FILENAME}"
+    replaceBrackets="."
+    tempFileName="${FILENAME/(/"$replaceBrackets"}"
+    fileName="${tempFileName/)/"$replaceBrackets"}"
     downloadUrl="https://github.com/${GITHUB_REPOSITORY}/releases/download/"
     echo ::set-output name=url::"$downloadUrl"
-    echo ::set-output name=file_name::"${FILENAME}"
+    echo ::set-output name=file_name::"${fileName}"
 
 done
