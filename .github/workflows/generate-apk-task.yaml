@@ -26,7 +26,7 @@ jobs:
         run: ./gradlew clean assembleQa
 
       - name: Upload to release asset
-        uses: sworksio/APK-Automation@main
+        uses: sworksio/APK-Automation@development
         id: attach_to_release
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
