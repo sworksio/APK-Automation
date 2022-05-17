@@ -174,7 +174,7 @@ for file in $INPUT_ARGS; do
     TEMP_FILENAME=${FILENAME}
     replaceBrackets="."
     tempFileName="${TEMP_FILENAME/(/"$replaceBrackets"}"
-    fileName="${TEMP_FILENAME/)/"$replaceBrackets"}"
+    fileName="${tempFileName/)/"$replaceBrackets"}"
     downloadUrl="https://github.com/${GITHUB_REPOSITORY}/releases/download/"
 
     echo "downloadUrl:  ${downloadUrl}"

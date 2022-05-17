@@ -37,13 +37,23 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+          groups: Testers
+          releaseNotesFile: "app/releaseNote.txt"
+          debug: true
+          file: "app/build/outputs/apk/qa/${{ steps.attach_to_release.outputs.firebase_file_name }}"
+
       - name: Send a message to Microsoft Teams
         uses: aliencube/microsoft-teams-actions@v0.8.0
         with:
           webhook_uri: ${{ secrets.TEAM_CHANNEL_WEBHOOK_URL }}
           title: QA Build
           summary: summary
-          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
+          text: "File has been uploaded in Firebase console with this version name ${{ steps.get_version.outputs.VERSION }}. \nYou can also download file from this link \n ${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
 
   generate-release-Bundle:
     #    name: Generate Release APK
@@ -60,7 +70,7 @@ jobs:
         with:
           java-version: 11
 
-      - name: Update Permission for gradle
+      - name: Update Permission for gradlehttps://www.sejda.com/pdf-editor?
         run: chmod +x gradlew
 
       #      - name: Build APK
@@ -81,14 +91,6 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
-      - name: Send a message to Microsoft Teams
-        uses: aliencube/microsoft-teams-actions@v0.8.0
-        with:
-          webhook_uri: ${{ secrets.TEAM_CHANNEL_WEBHOOK_URL }}
-          title: Release Bundle
-          summary: summary
-          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
-
       - name: Upload bundle in play store
         uses: r0adkll/upload-google-play@v1
         with:
@@ -104,6 +106,21 @@ jobs:
 
 
 
+#
+#      - name: Get the version
+#        id: get_version
+#        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+#      - name: Print Tag
+#        run: echo ${{ steps.get_version.outputs.VERSION }}
+
+#      - name: Send a message to Microsoft Teams
+#        uses: aliencube/microsoft-teams-actions@v0.8.0
+#        with:
+#          webhook_uri: ${{ secrets.TEAM_CHANNEL_WEBHOOK_URL }}
+#          title: QA Build
+#          summary: summary
+#          text: "${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
 
 #   mappingFile: app/build/outputs/mapping/release/mapping.txt
 #   track: alpha, beta, internal, production, internalsharing
