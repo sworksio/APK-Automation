@@ -171,6 +171,8 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
+    echo "FileName:  ${FILENAME}"
+    echo ::set-output name=firebase_file_name::"${FILENAME}"
     replaceBrackets="."
     tempFileName="${FILENAME/(/"$replaceBrackets"}"
     fileName="${tempFileName/)/"$replaceBrackets"}"

@@ -37,9 +37,6 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
-      #      - name: Print Tag
-      #        run: echo ${{ steps.get_version.outputs.VERSION }}
-
       - name: Send a message to Microsoft Teams
         uses: aliencube/microsoft-teams-actions@v0.8.0
         with:
@@ -83,9 +80,6 @@ jobs:
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-
-      #      - name: Print Tag
-      #        run: echo ${{ steps.get_version.outputs.VERSION }}
 
       - name: Send a message to Microsoft Teams
         uses: aliencube/microsoft-teams-actions@v0.8.0

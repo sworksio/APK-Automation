@@ -13,9 +13,11 @@ inputs:
     required: false
 outputs:
   url:
-    description: some output
+    description: Team Channel URL
   file_name:
-    description: some output
+    description: Team Channel File Name
+  firebase_file_name:
+    description: Firebase File Name
 runs:
   using: 'docker'
   image: 'Dockerfile'
