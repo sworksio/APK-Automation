@@ -171,13 +171,17 @@ for file in $INPUT_ARGS; do
     cat $tmp | jq .
     rm $tmp
 
-    echo "FileName:  ${FILENAME}"
-    echo ::set-output name=firebase_file_name::"${FILENAME}"
+    TEMP_FILENAME=${FILENAME}
     replaceBrackets="."
-    tempFileName="${FILENAME/(/"$replaceBrackets"}"
-    fileName="${tempFileName/)/"$replaceBrackets"}"
+    tempFileName="${TEMP_FILENAME/(/"$replaceBrackets"}"
+    fileName="${TEMP_FILENAME/)/"$replaceBrackets"}"
     downloadUrl="https://github.com/${GITHUB_REPOSITORY}/releases/download/"
+
+    echo "$downloadUrl:  ${$downloadUrl}"
+    echo "fileName:  ${fileName}"
+    echo "FILENAME:  ${FILENAME}"
     echo ::set-output name=url::"$downloadUrl"
     echo ::set-output name=file_name::"${fileName}"
+    echo ::set-output name=firebase_file_name::"${FILENAME}"
 
 done
