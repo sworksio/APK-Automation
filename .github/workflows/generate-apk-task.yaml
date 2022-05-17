@@ -53,7 +53,7 @@ jobs:
           webhook_uri: ${{ secrets.TEAM_CHANNEL_WEBHOOK_URL }}
           title: QA Build
           summary: summary
-          text: "File has been uploaded in Firebase console with this version name ${{ steps.get_version.outputs.VERSION }}. \nYou can also download file from this link \n ${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
+          text: "File has been uploaded in Firebase console with this version name ${{ steps.get_version.outputs.VERSION }}. You can also download file from this link ${{ steps.attach_to_release.outputs.url }}${{ steps.get_version.outputs.VERSION }}/${{ steps.attach_to_release.outputs.file_name }} "
 
   generate-release-Bundle:
     #    name: Generate Release APK
